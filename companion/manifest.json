@@ -3,7 +3,7 @@
 	"name": "newblue-captivate",
 	"shortname": "Captivate",
 	"description": " NewBlue Captivate",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"license": "MIT",
 	"repository": "https://github.com/bitfocus/companion-module-newblue-captivate.git",
 	"bugs": "https://github.com/bitfocus/companion-module-newblue-captivate/issues",
@@ -31,8 +31,7 @@
 		"bonjour_host": {
 			"type": "newblue",
 			"protocol": "tcp",
-			"port": 9023,
-			"txt": {}
+			"port": 9023
 		}
 	}
 }

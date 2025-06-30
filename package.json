@@ -1,6 +1,6 @@
 {
 	"name": "newblue-captivate",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"main": "captivate.js",
 	"private": true,
 	"scripts": {
@@ -11,7 +11,7 @@
 	"author": "adam (adamf@newblueinc.com)",
 	"license": "MIT",
 	"dependencies": {
-		"@companion-module/base": "~1.11",
+		"@companion-module/base": "~1.12",
 		"bufferutil": "^4.0.8",
 		"jimp": "1.6.0",
 		"lodash": "^4.17.21",
