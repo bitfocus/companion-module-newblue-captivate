@@ -3,7 +3,7 @@
 	"name": "newblue-captivate",
 	"shortname": "Captivate",
 	"description": " NewBlue Captivate",
-	"version": "1.1.9",
+	"version": "1.2.0",
 	"license": "MIT",
 	"repository": "https://github.com/bitfocus/companion-module-newblue-captivate.git",
 	"bugs": "https://github.com/bitfocus/companion-module-newblue-captivate/issues",
