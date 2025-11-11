@@ -3,7 +3,7 @@
 	"name": "newblue-captivate",
 	"shortname": "Captivate",
 	"description": " NewBlue Captivate",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"license": "MIT",
 	"repository": "https://github.com/bitfocus/companion-module-newblue-captivate.git",
 	"bugs": "https://github.com/bitfocus/companion-module-newblue-captivate/issues",
@@ -25,8 +25,12 @@
 		"entrypoint": "../captivate.js"
 	},
 	"manufacturer": "NewBlue",
-	"products": ["Captivate"],
-	"keywords": ["Graphics"],
+	"products": [
+		"Captivate"
+	],
+	"keywords": [
+		"Graphics"
+	],
 	"bonjourQueries": {
 		"bonjour_host": {
 			"type": "newblue",

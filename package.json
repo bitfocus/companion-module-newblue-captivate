@@ -1,12 +1,13 @@
 {
 	"name": "newblue-captivate",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"main": "captivate.js",
 	"private": true,
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"format": "prettier -w .",
-		"package": "companion-module-build"
+		"package": "companion-module-build",
+		"bump": "node ./bump-version.js"
 	},
 	"author": "adam (adamf@newblueinc.com)",
 	"license": "MIT",
