@@ -14,7 +14,7 @@
 		"@companion-module/base": "~1.11",
 		"bufferutil": "^4.0.8",
 		"jimp": "1.6.0",
-		"lodash": "^4.17.21",
+		"lodash": "^4.17.23",
 		"utf-8-validate": "^6.0.5",
 		"ws": "^8.18.0"
 	},
