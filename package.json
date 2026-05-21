@@ -1,6 +1,6 @@
 {
 	"name": "newblue-captivate",
-	"version": "1.2.3",
+	"version": "1.2.4",
 	"main": "captivate.js",
 	"private": true,
 	"scripts": {
