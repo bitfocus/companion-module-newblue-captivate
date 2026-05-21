@@ -450,10 +450,13 @@ class CaptivateInstance extends InstanceBase {
 				feedbackDebounce.delete(fullId)
 			}, 100)
 
+			// before we do anything with the feedback state, we want to check if we need to do any processing on it based on the feedbackId
+			// this is because sometimes invalid values get stored in the state object
+			state = await this._handleFeedbackState(state)
+
 			// did we get a new state object with data? if so, process it and cache it
 			const has_state = state && Object.keys(state).length > 0
 			if (has_state) {
-				state = await this._handleFeedbackState(state)
 				this.cache.storeFromFullId(fullId, options, state, CACHE_LIFETIME)
 			} else {
 				// we didn't get any state data, so we need to request it again
@@ -821,26 +824,27 @@ class CaptivateInstance extends InstanceBase {
 	 * @returns
 	 */
 	async _handleFeedbackState(state) {
+		if (!state) return state
 		const original = { ...state }
 
 		// first, handle the items that are sent to us by Captivate
 		if (state.overlayQueryKey || state.pngQueryKey) {
 			// debug('state with overlay query keys', state)
 			state = await this._handleFeedbackOverlayPlayStates(state)
-			debug('state with overlay information', state)
+			// debug('state with overlay information', state)
 		}
 
 		// now, handle the specified overlay image if there is one
 		if (state.overlayImageName || state.imageName) {
 			// debug('state with overlay image name keys', state)
 			state = await this._handleFeedbackOverlayImage(state)
-			debug('state with overlay information', state)
+			// debug('state with overlay information', state)
 		}
 
 		if (state.borderColor || state.borderWidth) {
 			// debug('state with border color', state)
 			state = await this._handleFeedbackBorderColor(state)
-			debug('state with border color applied', state)
+			// debug('state with border color applied', state)
 		}
 
 		state = await this._adaptToCompanionStyle(state)

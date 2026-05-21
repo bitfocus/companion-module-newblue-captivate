@@ -6,18 +6,23 @@ yarn package
 date=$(date '+%Y-%m-%d')
 version=$(cat companion/manifest.json | jq -r .version)
 
+TARGET=out
+mkdir -p $TARGET
 
 # clear previous builds
-rm -rf pkg/
-rm -rf companion-module-newblue-captivate/
-rm -f companion-module-newblue-captivate.zip
+rm -rf $TARGET/pkg/
+rm -rf $TARGET/companion-module-newblue-captivate/
+rm -f $TARGET/companion-module-newblue-captivate*.zip
 
 # extract new build
 tar -xf pkg.tgz
 
 # rename extracted folder
-mv pkg companion-module-newblue-captivate
+mv pkg $TARGET/companion-module-newblue-captivate
 
 # zip the build
+pushd $TARGET
 zip -r companion-module-newblue-captivate--$date--$version.zip companion-module-newblue-captivate/*
-echo "Build completed: companion-module-newblue-captivate--$date--$version.zip"
+popd
+
+echo "Build completed: $TARGET/companion-module-newblue-captivate--$date--$version.zip"
