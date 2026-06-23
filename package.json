@@ -16,7 +16,7 @@
 		"jimp": "1.6.0",
 		"lodash": "^4.18.1",
 		"utf-8-validate": "^6.0.5",
-		"ws": "^8.20.1"
+		"ws": "^8.21.0"
 	},
 	"resolutions": {
 		"simple-xml-to-json": "1.2.2"
