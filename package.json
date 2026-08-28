@@ -10,7 +10,7 @@
 		"bump": "node ./bump-version.js"
 	},
 	"author": "adam (adamf@newblueinc.com)",
-	"license": "MIT",
+	"license": "CC-BY-NC-ND-4.0",
 	"dependencies": {
 		"@companion-module/base": "~1.12",
 		"bufferutil": "^4.0.8",

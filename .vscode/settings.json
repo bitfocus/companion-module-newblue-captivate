@@ -2,5 +2,9 @@
 	"editor.tabSize": 2,
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
-	"biome.enabled": false
+	"biome.enabled": false,
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/var/**": true
+	}
 }
