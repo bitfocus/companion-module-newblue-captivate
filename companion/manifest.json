@@ -3,8 +3,9 @@
 	"name": "newblue-captivate",
 	"shortname": "Captivate",
 	"description": " NewBlue Captivate",
-	"version": "1.2.5",
-	"license": "CC-BY-NC-ND-4.0",
+	"version": "0.0.0",
+	"version-comment": "will be replaced by the version in package.json when built",
+	"license": "MIT",
 	"repository": "https://github.com/bitfocus/companion-module-newblue-captivate.git",
 	"bugs": "https://github.com/bitfocus/companion-module-newblue-captivate/issues",
 	"maintainers": [
@@ -19,18 +20,18 @@
 	],
 	"legacyIds": [],
 	"runtime": {
-		"type": "node18",
+		"type": "node22",
 		"api": "nodejs-ipc",
 		"apiVersion": "0.0.0",
-		"entrypoint": "../captivate.js"
+		"entrypoint": "../src/main.js"
 	},
+	"engines": {
+		"node": "^22.20 || ^26.5"
+	},
+	"packageManager": "yarn@4.18.0",
 	"manufacturer": "NewBlue",
-	"products": [
-		"Captivate"
-	],
-	"keywords": [
-		"Graphics"
-	],
+	"products": ["Captivate"],
+	"keywords": ["Graphics"],
 	"bonjourQueries": {
 		"bonjour_host": {
 			"type": "newblue",

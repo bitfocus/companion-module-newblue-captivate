@@ -1,0 +1,14 @@
+{
+	"arrowParens": "always",
+	"bracketSpacing": true,
+	"printWidth": 120,
+	"semi": false,
+	"singleQuote": true,
+	"useTabs": true,
+	"endOfLine": "lf",
+	"plugins": ["@ianvs/prettier-plugin-sort-imports"],
+	"importOrder": ["<BUILTIN_MODULES>", "<THIRD_PARTY_MODULES>", "^@companion-(.*)$", "^~/(.*)$", "^[./]"],
+	"importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+	"importOrderTypeScriptVersion": "6.0.0",
+	"importOrderCaseSensitive": false
+}

@@ -43,7 +43,7 @@ const { LocalCache } = require('./lib/cache')
 
 // We need to use a specific version (5.9) of QWebChannel because 5.15 which ships with CP 2.2.1
 // breaks compatibility with Captivate
-const QWebChannelEx = require('./contrib/qwebchannel').QWebChannel
+const QWebChannelEx = require('./contrib/qwebchannel/qwebchannel').QWebChannel
 const WebSocket = require('ws')
 const { Jimp } = require('jimp')
 console.log(Jimp)
@@ -54,6 +54,7 @@ const blankFullBuffer = blankFull.getBuffer('image/png')
 const CACHE_LIFETIME = 250 // ms
 const USE_QWEBCHANNEL = true
 const DEFAULT_BORDER_WIDTH = 2
+const SELF_CLOSE_ON_DESTROY = 4001
 
 let debug = () => {}
 let error = () => {}
@@ -156,9 +157,27 @@ class CaptivateInstance extends InstanceBase {
 		}, delay)
 	}
 
+	async close() {
+		if (!this.socket) return // nothing to do
+
+		this.debug('close called')
+		this.socket.close(SELF_CLOSE_ON_DESTROY)
+		this.socket = null
+		// leave the sp object around, since the socket is closed, it won't actually send anything
+		this.scheduler = undefined
+		clearInterval(this.connectionWatchdog)
+		if (this.scheduleRunner) {
+			this.scheduleRunner.clearAllTimers()
+		}
+		if (this.disconnectCallbacks) {
+			this.disconnectCallbacks()
+		}
+	}
+
 	// Called when module gets deleted
 	async destroy() {
 		this.debug('destroy called')
+		this.close()
 	}
 
 	async configUpdated(config) {
@@ -189,6 +208,9 @@ class CaptivateInstance extends InstanceBase {
 	 * Initialize the QWebChannel connection to Captivate and register for events
 	 */
 	initQWebChannel() {
+		// close previous connection if it exists
+		this.close()
+
 		this.config.needsNewConfig ??= false
 		if (this.config.needsNewConfig) {
 			this.log('debug', 'connection needs new configuration')
@@ -209,7 +231,8 @@ class CaptivateInstance extends InstanceBase {
 		if (!serverUrl) return
 
 		this.updateStatus(InstanceStatus.Connecting)
-		let socket = new WebSocket(serverUrl)
+		const socket = new WebSocket(serverUrl)
+		this.socket = socket
 
 		socket.on('open', () => {
 			this.log('debug', 'A Connection to Captivate has been established')
@@ -264,7 +287,9 @@ class CaptivateInstance extends InstanceBase {
 			// this.config.host = ''
 		})
 
-		socket.on('close', () => {
+		socket.on('close', (code) => {
+			if (code == SELF_CLOSE_ON_DESTROY) return // we did it ourselves
+
 			this.updateStatus(InstanceStatus.Disconnected)
 			this.log('warning', 'NewBlue: Captivate: Connection closed.')
 			this.status && this.status(this.STATUS_WARNING, 'Disconnected')

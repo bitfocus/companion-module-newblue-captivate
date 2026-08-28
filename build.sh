@@ -1,6 +1,6 @@
 #!/bin/bash
 
-~/.nvm/nvm.sh use 18
+~/.nvm/nvm.sh use 22
 
 # to automatically bump the version number and push the tag to git
 # node bump-version.js -- the release.sh script will do that for you
